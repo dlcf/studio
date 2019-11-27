@@ -25,6 +25,7 @@ EOF
 
 function main(){
   action "$0" deal
+  echo -e "${green}ansible install k8s exec \ncd ~\ngit clone https://github.com/dlcf/a5e-k8s.git${plain}"
 }
 
 main $*

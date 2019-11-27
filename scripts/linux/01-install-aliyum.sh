@@ -39,7 +39,8 @@ function checkfile(){
     action "$0" deal
   else
     if [ -d /etc/yum.repos.d.bak ] ;then
-      echo -e "${yellow}[$0] /etc/yum.repos.d.bak is exists. force update use param -f or force.${plain}"
+      echo -e "${green}[$0] /etc/yum.repos.d.bak is exists. force update use param -f or force.${plain}"
+      action "$0"
       return 0
     else
       action "$0" deal
