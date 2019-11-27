@@ -15,8 +15,8 @@ cat>/etc/docker/daemon.json<<\EOF
   "exec-opts": ["native.cgroupdriver=systemd"],
   "registry-mirrors": [
     "https://fz5yth0r.mirror.aliyuncs.com",
-    "http://hub-mirror.c.163.com",
-    "https://registry.docker-cn.com,
+    "https://hub-mirror.c.163.com",
+    "https://registry.docker-cn.com",
     "https://docker.mirrors.ustc.edu.cn"
   ],
   "graph":"/var/lib/docker",
@@ -40,12 +40,19 @@ function deal(){
   if [ ! -f /etc/yum.repos.d/docker-ce.repo ] ;then
      curl -sL http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo -o /etc/yum.repos.d/docker-ce.repo
   fi
-  yum install docker-ce
+  export docker_version=18.09.9
+  version=$(yum list docker-ce.x86_64 --showduplicates|sort -r|grep ${docker_version}|awk '{print $2}')
+  yum -y install --setopt=obsoletes=0 docker-ce-${docker_version} docker-ce-selinux-${docker_version} docker-compose > /dev/null
+  systemctl enable --now docker > /dev/null
 }
 
 
 function main(){
-  action "install docker-ce" deal
+  action "$0" deal
+  # yum -y install yum-plugin-versionlock
+  # yum versionlock docker-ce
+  # yum versionlock delete docker-ce
+  # yum versionlock clear
 }
 
-main
+main $*

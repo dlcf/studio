@@ -36,13 +36,13 @@ function checkparam(){
 function checkfile(){
   checkparam $*
   if [ $? -eq 1 ] ;then
-    action "update aliyun yum." deal
+    action "$0" deal
   else
     if [ -d /etc/yum.repos.d.bak ] ;then
       echo -e "${yellow}[$0] /etc/yum.repos.d.bak is exists. force update use param -f or force.${plain}"
       return 0
     else
-      action "install aliyun yum." deal
+      action "$0" deal
     fi
   fi
 }

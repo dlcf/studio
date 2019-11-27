@@ -8,7 +8,7 @@ green='\033[0;32m'
 yellow='\033[0;33m'
 plain='\033[0m'
 
-toolsName="lsof lrzsz telnet traceroute net-tools bash-completion vim yum-utils"
+toolsName="lsof lrzsz telnet traceroute net-tools bash-completion vim yum-utils yum-plugin-versionlock python3-pip git sshpass"
 
 function deal(){
   yum install $toolsName -y > /dev/null
@@ -16,7 +16,7 @@ function deal(){
 
 
 function main(){
-  action "install tools" deal
+  action "$0" deal
 }
 
-main
+main $*
