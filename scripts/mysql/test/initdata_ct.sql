@@ -26,15 +26,17 @@ var_06 varchar(50),var_07 varchar(50),var_08 varchar(50),var_09 varchar(50),var_
 isdelete tinyint(2));
 
 -- 更新完数据添加
--- ALTER TABLE user_5 ADD PRIMARY KEY (`id`);
+/*
+ALTER TABLE user_5 ADD PRIMARY KEY (`id`);
 
--- ALTER TABLE item_5 ADD PRIMARY KEY (id);
--- ALTER TABLE item_15 ADD PRIMARY KEY (`id`);
+ALTER TABLE item_5 ADD PRIMARY KEY (id);
+ALTER TABLE item_15 ADD PRIMARY KEY (`id`);
 
--- ALTER TABLE user_item_5 ADD PRIMARY KEY (user_id, item_id);
--- ALTER TABLE user_item_15 ADD PRIMARY KEY (user_id, item_id);
--- ALTER TABLE user_item_6 ADD UNIQUE INDEX user_item_6_useritemid(user_id, item_id);
--- ALTER TABLE user_item_16 ADD UNIQUE INDEX user_item_16_useritemid(user_id, item_id);
+ALTER TABLE user_item_5 ADD PRIMARY KEY (user_id, item_id);
+ALTER TABLE user_item_15 ADD PRIMARY KEY (user_id, item_id);
+ALTER TABLE user_item_6 ADD UNIQUE INDEX user_item_6_useritemid(user_id, item_id);
+ALTER TABLE user_item_16 ADD UNIQUE INDEX user_item_16_useritemid(user_id, item_id);
+*/
 
 
 
