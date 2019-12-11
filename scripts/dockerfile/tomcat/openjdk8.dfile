@@ -1,0 +1,21 @@
+FROM alpine:3.10.3
+
+MAINTAINER samz "z@samz.site"
+
+ENV JAVA_HOME /usr/lib/jvm/default-jvm
+ENV JAVA_VERSION 8u222
+ENV JAVA_ALPINE_VERSION 8.222.10-r0
+ENV PATH $JAVA_HOME/jre/bin:$JAVA_HOME/jre/bin:$PATH
+
+RUN echo "http://mirrors.aliyun.com/alpine/latest-stable/main/" > /etc/apk/repositories && \
+    echo "http://mirrors.aliyun.com/alpine/latest-stable/community/" >> /etc/apk/repositories && \
+    apk update && \
+    apk add --no-cache ca-certificates && \
+    apk add --no-cache curl bash tree tzdata && \
+    apk add --no-cache openjdk8-jre-base && \
+    apk add --no-cache openjdk8-jre=$JAVA_ALPINE_VERSION && \
+    echo '#!/bin/sh' > /usr/local/bin/docker-java-home && \
+    echo -e "set -e\n" > /usr/local/bin/docker-java-home && \
+    echo 'echo $JAVA_HOME' > /usr/local/bin/docker-java-home && \
+    /bin/cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    rm -rf /var/cache/apk/*
