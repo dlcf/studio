@@ -1,3 +1,14 @@
 docker pull alpine
 docker image inspect alpine:latest|grep alpine:
-docker build -f openjdk8.dfile -t myjdk:lastest .
+
+docker pull ubuntu:18.04
+
+#for i in `docker images|grep "<none>"|awk '{ print $3 }'`; do docker image rm $i; done
+#for i in `docker images|grep "ope-222"|awk '{ print $3 }'`; do docker image rm $i; done
+#for i in `docker images|grep "ora-201"|awk '{ print $3 }'`; do docker image rm $i; done
+
+docker build -f openjdk8.dfile -t myjdk:ope-222 .
+docker build -f oraclejdk8.dfile -t myjdk:ora-201 .
+
+docker run -it --rm myjdk:ope-222
+docker run -it --rm myjdk:ora-201

@@ -3,19 +3,21 @@ FROM alpine:3.10.3
 MAINTAINER samz "z@samz.site"
 
 ENV JAVA_HOME /usr/lib/jvm/default-jvm
-ENV JAVA_VERSION 8u222
-ENV JAVA_ALPINE_VERSION 8.222.10-r0
+ENV JAVA_VERSION 1.8.0_201-b09
 ENV PATH $JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
+ADD jdk-8u201-linux-x64.tar.gz /usr/lib/jvm/
+COPY glibc-2.30-r0.apk .
 
 RUN echo "http://mirrors.aliyun.com/alpine/latest-stable/main/" > /etc/apk/repositories && \
     echo "http://mirrors.aliyun.com/alpine/latest-stable/community/" >> /etc/apk/repositories && \
     apk update && \
     apk add --no-cache ca-certificates && \
     apk add --no-cache curl bash tree tzdata && \
-    apk add --no-cache openjdk8-jre-base && \
-    apk add --no-cache openjdk8-jre=$JAVA_ALPINE_VERSION && \
+    apk add glibc-2.30-r0.apk --allow-untrusted && \
     echo '#!/bin/sh' > /usr/local/bin/docker-java-home && \
     echo -e "set -e\n" > /usr/local/bin/docker-java-home && \
     echo 'echo $JAVA_HOME' > /usr/local/bin/docker-java-home && \
+    ln -s /usr/lib/jvm/jdk1.8.0_201 /usr/lib/jvm/default-jvm && \
     /bin/cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-    rm -rf /var/cache/apk/*
+    rm -rf /var/cache/apk/* && \
+    rm glibc-2.30-r0.apk
