@@ -1,0 +1,23 @@
+FROM myjdk:ope-222
+
+MAINTAINER samz "z@samz.site"
+
+ENV CATALINA_HOME /usr/local/tomcat
+ENV PATH $CATALINA_HOME/bin:$PATH
+ENV TOMCAT_VERSION 8.5.50
+
+ADD apache-tomcat-$TOMCAT_VERSION.tar.gz /usr/local/
+
+RUN apk add --no-cache gnupg openssl && \
+    ln -s /usr/local/apache-tomcat-$TOMCAT_VERSION /usr/local/tomcat && \
+    rm -rf /usr/local/tomcat/bin/*.bat && \
+    rm -rf /usr/local/tomcat/logs/* && \
+    rm -rf /usr/local/tomcat/work/* && \
+    rm -rf /usr/local/tomcat/webapps/*
+
+EXPOSE 8080 8081 8082 8083
+
+WORKDIR $CATALINA_HOME
+
+ENTRYPOINT startup.sh && /bin/bash
+

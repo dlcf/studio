@@ -12,3 +12,8 @@ docker build -f oraclejdk8.dfile -t myjdk:ora-201 .
 
 docker run -it --rm myjdk:ope-222
 docker run -it --rm myjdk:ora-201
+
+#for i in `docker images|grep "ora-201"|awk '{ print $3 }'`; do docker image rm $i; done
+
+docker build -f tomcat-ope-8.dfile -t tomcat8:ope-8 .
+docker run -itP --rm tomcat8:ope-8
