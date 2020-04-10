@@ -11,7 +11,7 @@ plain='\033[0m'
 toolsName="python3-pip git sshpass"
 
 function deal(){
-  yum install $toolsName -y > /dev/null
+  yum install $toolsName -y > /dev/null 2>&1
   mkdir -p ~/.pip
 cat << EOF > ~/.pip/pip.conf
 [global]
@@ -19,7 +19,7 @@ index-url = http://mirrors.aliyun.com/pypi/simple/
 [install]
 trusted-host = mirrors.aliyun.com
 EOF
-  pip3 install --no-cache-dir ansible > /dev/null
+  pip3 install --no-cache-dir ansible > /dev/null 2>&1
 }
 
 
