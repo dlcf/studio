@@ -14,7 +14,7 @@ cat>/etc/docker/daemon.json<<\EOF
 {
   "exec-opts": ["native.cgroupdriver=systemd"],
   "registry-mirrors": [
-    "https://fz5yth0r.mirror.aliyuncs.com",
+    "https://2ph0ua9a.mirror.aliyuncs.com",
     "https://hub-mirror.c.163.com",
     "https://registry.docker-cn.com",
     "https://docker.mirrors.ustc.edu.cn"
