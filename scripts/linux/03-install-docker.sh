@@ -40,7 +40,7 @@ function deal(){
   if [ ! -f /etc/yum.repos.d/docker-ce.repo ] ;then
      curl -sL http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo -o /etc/yum.repos.d/docker-ce.repo
   fi
-  export docker_version=19.03.5
+  export docker_version=19.03.8
   version=$(yum list docker-ce.x86_64 --showduplicates|sort -r|grep ${docker_version}|awk '{print $2}')
   yum -y install --setopt=obsoletes=0 docker-ce-${docker_version} docker-ce-selinux-${docker_version} docker-compose > /dev/null 2>&1
   systemctl enable --now docker > /dev/null 2>&1
