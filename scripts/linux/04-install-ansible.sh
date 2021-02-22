@@ -19,13 +19,14 @@ index-url = http://mirrors.aliyun.com/pypi/simple/
 [install]
 trusted-host = mirrors.aliyun.com
 EOF
+  python3 -m pip install --upgrade pip > /dev/null 2>&1
   pip3 install --no-cache-dir ansible > /dev/null 2>&1
 }
 
 
 function main(){
   action "$0" deal
-  echo -e "${green}ansible install k8s exec \ncd ~\ngit clone https://github.com/dlcf/a5e-k8s.git${plain}"
+  # echo -e "${green}ansible install k8s exec \ncd ~\ngit clone https://github.com/dlcf/a5e-k8s.git${plain}"
 }
 
 main $*
